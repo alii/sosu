@@ -1,65 +1,62 @@
-import {memo} from 'react';
 import {store} from '../src/index.js';
 import {createRoot} from 'react-dom/client';
 
-const {useStore, useSet} = store({
-	age: 0,
-	another_value: 0,
+const {useStore, useSet, subscribe, getState, setState} = store({
+	age: 17,
 	name: 'alistair',
+	clock: 0,
 });
 
-let parentRenders = 0;
-let childRenders = 0;
+subscribe(state => {
+	console.log('State changed', state);
+});
 
-const OptimizedChild = memo(function OptimizedChild() {
+setInterval(() => {
+	const {clock} = getState();
+	setState('clock', clock + 1);
+}, 1000);
+
+let renders = 0;
+function Name() {
 	const {name} = useStore();
 
-	++childRenders;
-
-	return <pre>{JSON.stringify({renders: childRenders, name}, null, 4)}</pre>;
-});
-
-function App() {
-	const {age, another_value} = useStore();
-	const setName = useSet('name');
-	const setAnotherValue = useSet('another_value');
-	const setAge = useSet('age');
-
-	++parentRenders;
-
-	console.log('render', parentRenders);
+	++renders;
 
 	return (
 		<div>
-			<OptimizedChild />
+			<h1>Name: {name}</h1>
+			<h2>Renders: {renders} (shouldn't change)</h2>
+		</div>
+	);
+}
 
-			<pre>
-				{JSON.stringify({renders: parentRenders, another_value, age}, null, 4)}
-			</pre>
+function Clock() {
+	const {clock} = useStore();
+	return <>clock: {clock}</>;
+}
 
-			<button
-				onClick={() => {
-					setAge(age + 1);
-				}}
-			>
-				age++
-			</button>
+function Age() {
+	const {age} = useStore();
+	return <>age: {age}</>;
+}
 
-			<button
-				onClick={() => {
-					setAnotherValue(another_value + 1);
-				}}
-			>
-				another_value++
-			</button>
+function App() {
+	const setAge = useSet('age');
 
-			<button
-				onClick={() => {
-					setName(name => `${name}_${name}`);
-				}}
-			>
-				extend name
-			</button>
+	const up = () => setAge(old => old + 1);
+	const down = () => setAge(old => old - 1);
+
+	return (
+		<div>
+			<Name />
+			<Clock />
+
+			<div>
+				<Age />
+			</div>
+
+			<button onClick={up}>age++</button>
+			<button onClick={down}>age--</button>
 		</div>
 	);
 }

@@ -1,9 +1,9 @@
 {
 	"name": "sosu",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"license": "MIT",
 	"type": "module",
-	"description": "(experimental) global state manager for ⚛️ React with smart rerenders",
+	"description": "Global state manager for ⚛️ React with smart rerenders",
 	"exports": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
@@ -27,6 +27,7 @@
 		"@types/react": "^18.0.15",
 		"@types/react-dom": "^18.0.6",
 		"prettier": "^2.7.1",
+		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-refresh": "^0.14.0",
 		"tsup": "^6.1.3",

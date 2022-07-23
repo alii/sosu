@@ -8,8 +8,7 @@ import {
 } from 'react';
 import {useUnstableRerender} from './hooks.js';
 
-export const ALL_KEYS = '*';
-export type Listener<T> = (value: T, key: keyof T | typeof ALL_KEYS) => unknown;
+export type Listener<T> = (value: T, key: keyof T) => unknown;
 
 export function store<T extends Record<string, unknown>>(initial: T) {
 	let state = {...initial};
@@ -31,7 +30,15 @@ export function store<T extends Record<string, unknown>>(initial: T) {
 		}
 	}
 
+	function getState() {
+		return state;
+	}
+
 	return {
+		subscribe,
+		setState,
+		getState,
+
 		useSet<K extends keyof T>(key: K) {
 			const fn: Dispatch<SetStateAction<T[K]>> = value => {
 				const resolved = value instanceof Function ? value(state[key]) : value;
@@ -50,20 +57,17 @@ export function store<T extends Record<string, unknown>>(initial: T) {
 			const proxy = useMemo(() => {
 				stateRef.current = state;
 
-				return new Proxy<{}>(
-					{},
-					{
-						get(_, property) {
-							targets.current[property as keyof T] = true;
-							return stateRef.current[property as keyof T];
-						},
-						set(_, property, value) {
-							setState(property as keyof T, value);
-							return true;
-						},
+				return new Proxy<T>({} as T, {
+					get(_, property) {
+						targets.current[property as keyof T] = true;
+						return stateRef.current[property as keyof T];
 					},
-				);
-			}, []) as T;
+					set(_, property, value) {
+						setState(property as keyof T, value);
+						return true;
+					},
+				});
+			}, []);
 
 			useEffect(() => {
 				return subscribe((_, key) => {
