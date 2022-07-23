@@ -1,11 +1,28 @@
 {
 	"name": "sosu",
-	"version": "1.0.3",
+	"version": "1.0.5",
 	"license": "MIT",
 	"type": "module",
 	"description": "Global state manager for ⚛️ React with smart rerenders",
 	"exports": "./dist/index.js",
 	"types": "./dist/index.d.ts",
+	"homepage": "https://github.com/alii/sosu#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/alii/sosu.git"
+	},
+	"author": {
+		"name": "Alistair Smith",
+		"url": "https://alistair.sh",
+		"email": "hi@alistair.sh"
+	},
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/alii"
+	},
+	"bugs": {
+		"url": "https://github.com/alii/sosu/issues"
+	},
 	"scripts": {
 		"build": "tsup src/index.ts",
 		"format": "prettier --write '**/*.{ts,tsx,json,yml,md,css,html,json}'",

@@ -1,10 +1,10 @@
 # `sosu`
 
-Sosu is an ESM-only global state manager for React that tracks keys that are used in your store.
+Sosu is a zero-dependency, ESM-only global state manager for React that tracks keys and intelligently rerenders
 
 [Demo](https://codesandbox.io/s/sosu-demo-oftz7o?file=/src/App.tsx)
 
-### Usage:
+### Basic usage:
 
 ```tsx
 import {store} from 'sosu';
@@ -23,6 +23,8 @@ function App() {
 	return <div>{age}</div>;
 }
 ```
+
+More advanced usage can be found in the [demo](https://codesandbox.io/s/sosu-demo-oftz7o?file=/src/App.tsx)
 
 ### Wait, what? How does this work
 

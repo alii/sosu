@@ -11,7 +11,7 @@ import {useUnstableRerender} from './hooks.js';
 export type Listener<T> = (value: T, key: keyof T) => unknown;
 
 export function store<T extends Record<string, unknown>>(initial: T) {
-	let state = {...initial};
+	let state = initial;
 
 	const listeners = new Set<Listener<T>>();
 
