@@ -31,15 +31,6 @@ export function store<T extends Record<string, unknown>>(initial: T) {
 		}
 	}
 
-	function patchState(data: Partial<T>) {
-		state = {
-			...state,
-			...data,
-		};
-
-		listeners.forEach(l => l(state, '*'));
-	}
-
 	return {
 		useSet<K extends keyof T>(key: K) {
 			const fn: Dispatch<SetStateAction<T[K]>> = value => {
@@ -49,12 +40,6 @@ export function store<T extends Record<string, unknown>>(initial: T) {
 			};
 
 			return useCallback(fn, [key]);
-		},
-
-		usePatch() {
-			return (data: Partial<T>) => {
-				patchState(data);
-			};
 		},
 
 		useStore() {

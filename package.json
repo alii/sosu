@@ -8,7 +8,7 @@
 	"scripts": {
 		"build": "tsup src/index.ts",
 		"format": "prettier --write '**/*.{ts,tsx,json,yml,md,css,html,json}'",
-		"release": "bun run build && yarn npm publish"
+		"release": "bun run build && yarn publish"
 	},
 	"devDependencies": {
 		"@types/react": "^18.0.15",
@@ -25,5 +25,6 @@
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org"
-	}
+	},
+	"packageManager": "yarn@3.2.2"
 }
