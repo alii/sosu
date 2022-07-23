@@ -10,6 +10,10 @@
 		"format": "prettier --write '**/*.{ts,tsx,json,yml,md,css,html,json}'",
 		"release": "yarn build && yarn npm publish"
 	},
+	"files": [
+		"dist",
+		"package.json"
+	],
 	"devDependencies": {
 		"@types/react": "^18.0.15",
 		"@types/react-dom": "^18.0.6",
