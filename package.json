@@ -1,0 +1,22 @@
+{
+  "name": "sosu",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts",
+    "format": "prettier --write '**/*.{ts,tsx,json,yml,md,css,html,json}'"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "prettier": "^2.7.1",
+    "react-dom": "^18.2.0",
+    "react-refresh": "^0.14.0",
+    "tsup": "^6.1.3",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0"
+  }
+}
