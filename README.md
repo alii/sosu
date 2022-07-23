@@ -31,3 +31,7 @@ There is a demo in the `public` folder here. It's a simple example that proves t
 ### Let me read more...
 
 Okay, I hear you. This package was hugely inspired by the wonderful Paco Coursey, who wrote a few words about this exact topic. In fact, a lot of the code here is taken from [this blog post](https://paco.me/writing/hook-getter).
+
+### Contributing
+
+This repo uses yarn and also [bun](https://bun.sh) to run the dev server. Make sure you have both installed, and run `bun run example` to start the dev server on :3000

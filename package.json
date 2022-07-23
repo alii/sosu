@@ -1,18 +1,27 @@
 {
 	"name": "sosu",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"type": "module",
+	"description": "(experimental) global state manager for ⚛️ React with smart rerenders",
 	"exports": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"build": "tsup src/index.ts",
 		"format": "prettier --write '**/*.{ts,tsx,json,yml,md,css,html,json}'",
-		"release": "yarn build && yarn npm publish"
+		"release": "yarn build && yarn npm publish",
+		"example": "bun dev"
 	},
 	"files": [
 		"dist",
 		"package.json"
+	],
+	"keywords": [
+		"react",
+		"state",
+		"manager",
+		"proxies",
+		"esm"
 	],
 	"devDependencies": {
 		"@types/react": "^18.0.15",
