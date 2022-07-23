@@ -8,7 +8,7 @@
 	"scripts": {
 		"build": "tsup src/index.ts",
 		"format": "prettier --write '**/*.{ts,tsx,json,yml,md,css,html,json}'",
-		"release": "bun run build && yarn publish"
+		"release": "yarn build && yarn npm publish"
 	},
 	"devDependencies": {
 		"@types/react": "^18.0.15",
