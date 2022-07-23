@@ -26,7 +26,7 @@ function App() {
 
 ### Wait, what? How does this work
 
-Suso uses proxies and getters to figure out which keys of an object are actually accessed. It then subscribes to listen to those keys only and will rerender your components as necessary.
+Sosu uses proxies and getters to figure out which keys of an object are actually accessed. It then subscribes to listen to those keys only and will rerender your components as necessary.
 
 There is a demo in the `public` folder here. It's a simple example that proves that the components are only rerendering when they need to!
 
