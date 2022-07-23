@@ -1,4 +1,11 @@
-import {useCallback, useEffect, useMemo, useRef} from 'react';
+import {
+	Dispatch,
+	SetStateAction,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+} from 'react';
 import {useUnstableRerender} from './hooks.js';
 
 export const ALL_KEYS = '*';
@@ -35,7 +42,13 @@ export function store<T extends Record<string, unknown>>(initial: T) {
 
 	return {
 		useSet<K extends keyof T>(key: K) {
-			return useCallback((value: T[K]) => setState(key, value), [key]);
+			const fn: Dispatch<SetStateAction<T[K]>> = value => {
+				const resolved = value instanceof Function ? value(state[key]) : value;
+
+				setState(key, resolved);
+			};
+
+			return useCallback(fn, [key]);
 		},
 
 		usePatch() {

@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import {memo} from 'react';
 import {store} from '../src/index.js';
 import {createRoot} from 'react-dom/client';
 
@@ -55,10 +55,10 @@ function App() {
 
 			<button
 				onClick={() => {
-					setName(Math.random().toString());
+					setName(name => `${name}_${name}`);
 				}}
 			>
-				change name
+				extend name
 			</button>
 		</div>
 	);

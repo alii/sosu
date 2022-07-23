@@ -26,6 +26,8 @@ function App() {
 
 Suso uses proxies and getters to figure out which keys of an object are actually accessed. It then subscribes to listen to those keys only and will rerender your components as necessary.
 
+There is a demo in the `public` folder here. It's a simple example that proves that the components are only rerendering when they need to!
+
 ### Let me read more...
 
 Okay, I hear you. This package was hugely inspired by the wonderful Paco Coursey, who wrote a few words about this exact topic. In fact, a lot of the code here is taken from [this blog post](https://paco.me/writing/hook-getter).
