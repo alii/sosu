@@ -1,6 +1,6 @@
 {
 	"name": "sosu",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "MIT",
 	"type": "module",
 	"description": "(experimental) global state manager for ⚛️ React with smart rerenders",

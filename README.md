@@ -2,6 +2,8 @@
 
 Sosu is an ESM-only global state manager for React that tracks keys that are used in your store.
 
+[Demo](https://codesandbox.io/s/sosu-demo-oftz7o?file=/src/App.tsx)
+
 ### Usage:
 
 ```tsx
