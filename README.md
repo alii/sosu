@@ -1,6 +1,6 @@
 # `sosu`
 
-Sosu is a global state manager for React that tracks keys that are used in your store.
+Sosu is an ESM-only global state manager for React that tracks keys that are used in your store.
 
 ### Usage:
 
