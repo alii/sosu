@@ -13,6 +13,8 @@ const {
 	age: 17,
 	name: 'alistair',
 	clock: 0,
+	resetClock: () => setState('clock', 0),
+	resetAge: () => setState('age', 17),
 });
 
 subscribe(state => {
@@ -76,10 +78,11 @@ function WithManyUpdates() {
 
 function App() {
 	const setAge = useSet('age');
+	const store = useStore();
 
 	const up = () => setAge(old => old + 1);
 	const down = () => setAge(old => old - 1);
-	const reset = () => setAge(0);
+	const reset = () => store.resetAge();
 
 	return (
 		<div>
