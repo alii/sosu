@@ -1,10 +1,4 @@
-import {useCallback, useState} from 'react';
-
-export function useRerender() {
-	const [, rerender] = useState({});
-
-	return useCallback(() => rerender({}), []);
-}
+import {useState} from 'react';
 
 export function useUnstableRerender() {
 	const [, rerender] = useState({});

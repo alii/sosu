@@ -1,7 +1,15 @@
 import {store} from '../src/index.js';
 import {createRoot} from 'react-dom/client';
 
-const {useStore, useSet, subscribe, getState, setState} = store({
+const {
+	useStore,
+	useSet,
+	subscribe,
+	getState,
+	setState,
+	useValue,
+	batchSetState,
+} = store({
 	age: 17,
 	name: 'alistair',
 	clock: 0,
@@ -10,6 +18,11 @@ const {useStore, useSet, subscribe, getState, setState} = store({
 subscribe(state => {
 	console.log('State changed', state);
 });
+
+function RendersValue() {
+	const age = useValue('age');
+	return <div>age (via useValue): {age}</div>;
+}
 
 setInterval(() => {
 	const {clock} = getState();
@@ -30,14 +43,35 @@ function Name() {
 	);
 }
 
-function Clock() {
-	const {clock} = useStore();
-	return <>clock: {clock}</>;
+function ClockWithInternals() {
+	const store = useStore();
+
+	return <>clock: {store.clock}</>;
 }
 
 function Age() {
 	const {age} = useStore();
-	return <>age: {age}</>;
+
+	return <>age (via useStore): {age}</>;
+}
+
+function WithManyUpdates() {
+	return (
+		<button
+			onClick={() => {
+				batchSetState({
+					age: 20,
+					name: 'not alistair',
+				});
+
+				batchSetState({
+					clock: 10,
+				});
+			}}
+		>
+			many updates
+		</button>
+	);
 }
 
 function App() {
@@ -45,11 +79,14 @@ function App() {
 
 	const up = () => setAge(old => old + 1);
 	const down = () => setAge(old => old - 1);
+	const reset = () => setAge(0);
 
 	return (
 		<div>
 			<Name />
-			<Clock />
+			<ClockWithInternals />
+			<RendersValue />
+			<WithManyUpdates />
 
 			<div>
 				<Age />
@@ -57,6 +94,7 @@ function App() {
 
 			<button onClick={up}>age++</button>
 			<button onClick={down}>age--</button>
+			<button onClick={reset}>reset</button>
 		</div>
 	);
 }
